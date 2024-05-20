@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+        }
+
+        .search-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logo {
+            margin-bottom: 20px;
+            display: none; /* Initially hide the logo */
+        }
+
+        .search-box {
+            width: 484px;
+            height: 44px;
+            padding: 0 20px;
+            font-size: 16px;
+            border: 1px solid #dfe1e5;
+            border-radius: 24px;
+            margin-bottom: 18px;
+        }
+
+        .search-box:focus {
+            box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+            border-color: rgba(223,225,229,0);
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .search-btn {
+            background-color: #f8f9fa;
+            color: #3c4043;
+            border: 1px solid #f8f9fa;
+            border-radius: 4px;
+            padding: 11px 20px;
+            margin: 11px 4px;
+            font-size: 14px;
+            cursor: pointer; /* Add cursor pointer for better UX */
+        }
+
+        .search-btn:hover {
+            border: 1px solid #c6c6c6;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+        }
+
+        .search-btn:active {
+            background-color: #f8f9fa;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 600px) {
+            .search-btn {
+                font-size: 12px;
+                padding: 10px 16px;
+            }
+            .search-box {
+                width: 300px;
+                height: 44px;
+                padding: 0 20px;
+                font-size: 16px;
+                border: 1px solid #dfe1e5;
+                border-radius: 24px;
+                margin-bottom: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <img src="" class="logo" id="logo" alt="">
+        <div>
+            <input type="text" class="search-box" id="magicText" autofocus>
+        </div>
+        <div class="buttons">
+            <button class="search-btn" id="contact-link">Contact Me</button>
+        </div>
+    </div>
+
+    <script>
+        const target = document.getElementById('magicText');
+        const text = 'I make webpages for your "special" needs.';
+        let index = 0;
+        let writing = true;
+        
+        function typeWriter() {
+            if (writing) {
+                let current = text.slice(0, ++index);
+                target.value = current;
+                if (current.length === text.length) {
+                    writing = false;
+                    setTimeout(typeWriter, 2000); // Wait a bit at the end of writing
+                } else {
+                    setTimeout(typeWriter, 100);
+                }
+            } else {
+                let current = text.slice(0, --index);
+                target.value = current;
+                if (current.length === 0) {
+                    writing = true;
+                    setTimeout(typeWriter, 500); // Wait a bit before starting to write again
+                } else {
+                    setTimeout(typeWriter, 50);
+                }
+            }
+        }
+
+        // Start the effect once the script loads
+        typeWriter();
+
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('query');
+        }
+
+        const logo = document.getElementById('logo');
+        const query = getQueryParams();
+        if (query) {
+        const a = 'https://ww';
+        const o = 'w.goo';
+        const b = 'gle.com/ima';
+        const c = 'ges/branding/goo';
+        const d = 'glelogo/1x/goo';
+        const e = 'glelogo_color_272x92dp.p';
+        const f = 'ng';
+        logo.src = a + o + b + c + d + e + f;
+        logo.style.display = 'block'; // Show the logo if the query is present
+        }
+
+        document.getElementById('contact-link').addEventListener('click', function() {
+            window.location.href = 'mailto:services.weblink@proton.me?subject=webpage%20issue:%20a%20brief%20description';
+        });
+    </script>
+</body>
+</html>
